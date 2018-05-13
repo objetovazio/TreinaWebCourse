@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Index Teste Razor";
+}
+
+<h1>@ViewBag.Title</h1>
+
+<div class="container">
+    @using (Html.BeginForm("Index", "Teste", FormMethod.Post))
+    {
+        <p>Digite seu nome: </p>
+        <input type="text" id="txtNome" name="nome" class="input-sm" placeholder="Nome" />
+        <input type="submit" class="btn btn-info" value="Enviar!" />
+    }
+</div>
