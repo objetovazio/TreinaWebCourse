@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TreinaWeb.ProjetoTeste.Web.Models;
 
 namespace TreinaWeb.ProjetoTeste.Web.Controllers
 {
@@ -16,9 +17,9 @@ namespace TreinaWeb.ProjetoTeste.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(FormCollection formCollection)
+        public ActionResult Index(Pessoa pessoa)
         {
-            return View();
+            return View("Saudacao", pessoa);
         }
     }
 }

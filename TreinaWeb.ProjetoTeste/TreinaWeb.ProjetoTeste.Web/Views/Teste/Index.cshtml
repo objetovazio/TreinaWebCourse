@@ -1,4 +1,6 @@
-﻿
+﻿@using TreinaWeb.ProjetoTeste.Web.Models
+@model Pessoa
+
 @{
     ViewBag.Title = "Index Teste Razor";
 }
@@ -8,8 +10,18 @@
 <div class="container">
     @using (Html.BeginForm("Index", "Teste", FormMethod.Post))
     {
-        <p>Digite seu nome: </p>
-        <input type="text" id="txtNome" name="nome" class="input-sm" placeholder="Nome" />
+        <div class="form-group">
+            @Html.LabelFor(p => p.Nome)
+            @Html.TextBoxFor(p => p.Nome, new { id = "txtNome", @class = "form-control", placeholder = "Nome" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.Endereco)
+            @Html.TextBoxFor(p => p.Endereco, new { id = "txtEndereco", @class = "form-control", placeholder = "Endereço" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.Idade)
+            @Html.TextBoxFor(p => p.Idade, new { id = "txtIdade", @class = "form-control", placeholder = "Idade" })
+        </div>
         <input type="submit" class="btn btn-info" value="Enviar!" />
     }
 </div>
