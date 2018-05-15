@@ -19,7 +19,14 @@ namespace TreinaWeb.ProjetoTeste.Web.Controllers
         [HttpPost]
         public ActionResult Index(Pessoa pessoa)
         {
-            return View("Saudacao", pessoa);
+            if (ModelState.IsValid)
+            {
+                return View("Saudacao", pessoa);
+            }
+            else
+            {
+                return View(pessoa);
+            }
         }
     }
 }

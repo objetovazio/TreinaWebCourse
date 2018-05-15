@@ -22,6 +22,15 @@
             @Html.LabelFor(p => p.Idade)
             @Html.TextBoxFor(p => p.Idade, new { id = "txtIdade", @class = "form-control", placeholder = "Idade" })
         </div>
+        @Html.ValidationSummary(true, "Erro nos seguintes itens: <br>", new { @class = "alert alert-danger" }){
+            @Html.ValidationMessageFor(p => p.Nome)
+            <br />
+            @Html.ValidationMessageFor(p => p.Endereco)
+            <br />
+            @Html.ValidationMessageFor(p => p.Idade)
+            <br />
+        }
+
         <input type="submit" class="btn btn-info" value="Enviar!" />
     }
 </div>
