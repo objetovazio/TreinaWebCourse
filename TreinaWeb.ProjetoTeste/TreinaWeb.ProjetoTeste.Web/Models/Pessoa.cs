@@ -23,5 +23,11 @@ namespace TreinaWeb.ProjetoTeste.Web.Models
         [MaxLength(200, ErrorMessage = "Máximo de caracteres 200.")]
         [DisplayName("Endereco")]
         public String Endereco { get; set; }
+
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        public String Email { get; set; }
+
+        public bool IsAtivo { get; set; }
     }
 }

@@ -10,6 +10,7 @@
 <div class="container">
     @using (Html.BeginForm("Index", "Teste", FormMethod.Post))
     {
+        @Html.AntiForgeryToken()
         <div class="form-group">
             @Html.LabelFor(p => p.Nome)
             @Html.TextBoxFor(p => p.Nome, new { id = "txtNome", @class = "form-control", placeholder = "Nome" })
