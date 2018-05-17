@@ -18,7 +18,7 @@ namespace TreinaWeb.ProjetoTeste.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index([Bind(Exclude = "IsAtivo")]Pessoa pessoa)
+        public ActionResult Index([Bind(Exclude = "IsAtivo,Email")]Pessoa pessoa)
         {
             if (ModelState.IsValid)
             {

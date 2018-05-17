@@ -24,7 +24,6 @@ namespace TreinaWeb.ProjetoTeste.Web.Models
         [DisplayName("Endereco")]
         public String Endereco { get; set; }
 
-        [Required]
         [DataType(DataType.EmailAddress)]
         public String Email { get; set; }
 

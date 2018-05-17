@@ -8,30 +8,29 @@
 <h1>@ViewBag.Title</h1>
 
 <div class="container">
-    @using (Html.BeginForm("Index", "Teste", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-        <div class="form-group">
-            @Html.LabelFor(p => p.Nome)
-            @Html.TextBoxFor(p => p.Nome, new { id = "txtNome", @class = "form-control", placeholder = "Nome" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(p => p.Endereco)
-            @Html.TextBoxFor(p => p.Endereco, new { id = "txtEndereco", @class = "form-control", placeholder = "Endereço" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(p => p.Idade)
-            @Html.TextBoxFor(p => p.Idade, new { id = "txtIdade", @class = "form-control", placeholder = "Idade" })
-        </div>
-        @Html.ValidationSummary(true, "Erro nos seguintes itens: <br>", new { @class = "alert alert-danger" }){
-            @Html.ValidationMessageFor(p => p.Nome)
-            <br />
-            @Html.ValidationMessageFor(p => p.Endereco)
-            <br />
-            @Html.ValidationMessageFor(p => p.Idade)
-            <br />
-        }
+    <div class="row">
+        @using (Html.BeginForm("Index", "Teste", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "Erro nos seguintes itens: <br>", new { @class = "alert alert-danger" })
 
-        <input type="submit" class="btn btn-info" value="Enviar!" />
-    }
+            <div class="form-group">
+                @Html.LabelFor(p => p.Nome) <span style="color:red">@Html.ValidationMessageFor(p => p.Nome)</span>
+                @Html.TextBoxFor(p => p.Nome, new { id = "txtNome", @class = "form-control", placeholder = "Nome" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.Endereco) <span style="color:red">@Html.ValidationMessageFor(p => p.Endereco)</span>
+                @Html.TextBoxFor(p => p.Endereco, new { id = "txtEndereco", @class = "form-control", placeholder = "Endereço" })
+
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.Idade) <span style="color:red">@Html.ValidationMessageFor(p => p.Idade)</span>
+                @Html.TextBoxFor(p => p.Idade, new { id = "txtIdade", @class = "form-control", placeholder = "Idade" })
+            </div>
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-lg btn-block" value="Enviar!" />
+            </div>
+        }
+    </div>
 </div>
