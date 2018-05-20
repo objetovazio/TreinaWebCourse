@@ -1,4 +1,4 @@
-﻿@model TreinaWeb.Musicas.Dominio.Album
+﻿@model TreinaWeb.Musicas.Web.Models.Album.AlbumViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -45,7 +45,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

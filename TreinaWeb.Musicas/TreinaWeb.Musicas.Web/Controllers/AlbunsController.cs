@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -8,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using TreinaWeb.Musicas.AcessoDados.Entity.Context;
 using TreinaWeb.Musicas.Dominio;
+using TreinaWeb.Musicas.Web.Models.Album;
 
 namespace TreinaWeb.Musicas.Web.Controllers
 {
@@ -18,7 +20,7 @@ namespace TreinaWeb.Musicas.Web.Controllers
         // GET: Albuns
         public ActionResult Index()
         {
-            return View(db.Albuns.ToList());
+            return View(Mapper.Map<List<Album>, List<AlbumViewModel>>(db.Albuns.ToList()));
         }
 
         // GET: Albuns/Details/5
@@ -47,16 +49,17 @@ namespace TreinaWeb.Musicas.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nome,Ano,Observacoes,Email")] Album album)
+        public ActionResult Create([Bind(Include = "Id,Nome,Ano,Observacoes,Email")] AlbumViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
+                Album album = Mapper.Map<AlbumViewModel, Album>(viewModel);
                 db.Albuns.Add(album);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(album);
+            return View(viewModel);
         }
 
         // GET: Albuns/Edit/5
@@ -71,7 +74,7 @@ namespace TreinaWeb.Musicas.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(album);
+            return View(Mapper.Map<Album, AlbumViewModel>(album));
         }
 
         // POST: Albuns/Edit/5
@@ -79,15 +82,16 @@ namespace TreinaWeb.Musicas.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nome,Ano,Observacoes,Email")] Album album)
+        public ActionResult Edit([Bind(Include = "Id,Nome,Ano,Observacoes,Email")] AlbumViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
+                Album album = Mapper.Map<AlbumViewModel, Album>(viewModel);
                 db.Entry(album).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(album);
+            return View(viewModel);
         }
 
         // GET: Albuns/Delete/5
