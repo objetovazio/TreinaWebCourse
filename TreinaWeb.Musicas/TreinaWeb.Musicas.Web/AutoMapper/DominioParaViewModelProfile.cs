@@ -12,8 +12,12 @@ namespace TreinaWeb.Musicas.Web.AutoMapper
     {
         public DominioParaViewModelProfile()
         {
-            CreateMap<Album, AlbumViewModel>();
+            CreateMap<Album, AlbumViewModel>()
+                .ForMember(p => p.Nome, opt =>
+                {
+                    opt.MapFrom(src => string.Format("{0}({1})", src.Nome, src.Ano));
+                });
+
         }
-        
     }
 }

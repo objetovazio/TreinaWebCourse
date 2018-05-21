@@ -9,18 +9,20 @@ using System.Web;
 using System.Web.Mvc;
 using TreinaWeb.Musicas.AcessoDados.Entity.Context;
 using TreinaWeb.Musicas.Dominio;
+using TreinaWeb.Musicas.Repositorio.Comum;
+using TreinaWeb.Musicas.Repositorio.Entity;
 using TreinaWeb.Musicas.Web.Models.Album;
 
 namespace TreinaWeb.Musicas.Web.Controllers
 {
     public class AlbunsController : Controller
     {
-        private MusicasDbContext db = new MusicasDbContext();
+        private IRepositorioGenerico<Album, int> repositorioAlbums = new AlbumsRepositorio(new MusicasDbContext());
 
         // GET: Albuns
         public ActionResult Index()
         {
-            return View(Mapper.Map<List<Album>, List<AlbumViewModel>>(db.Albuns.ToList()));
+            return View(Mapper.Map<List<Album>, List<AlbumViewModel>>(repositorioAlbums.Selecionar()));
         }
 
         // GET: Albuns/Details/5
@@ -30,12 +32,12 @@ namespace TreinaWeb.Musicas.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Album album = db.Albuns.Find(id);
+            Album album = repositorioAlbums.SelecionarPorId(id.Value);
             if (album == null)
             {
                 return HttpNotFound();
             }
-            return View(album);
+            return View(Mapper.Map<Album, AlbumViewModel>(album));
         }
 
         // GET: Albuns/Create
@@ -54,8 +56,7 @@ namespace TreinaWeb.Musicas.Web.Controllers
             if (ModelState.IsValid)
             {
                 Album album = Mapper.Map<AlbumViewModel, Album>(viewModel);
-                db.Albuns.Add(album);
-                db.SaveChanges();
+                repositorioAlbums.Inserir(album);
                 return RedirectToAction("Index");
             }
 
@@ -69,7 +70,7 @@ namespace TreinaWeb.Musicas.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Album album = db.Albuns.Find(id);
+            Album album =  repositorioAlbums.SelecionarPorId(id.Value);
             if (album == null)
             {
                 return HttpNotFound();
@@ -87,8 +88,7 @@ namespace TreinaWeb.Musicas.Web.Controllers
             if (ModelState.IsValid)
             {
                 Album album = Mapper.Map<AlbumViewModel, Album>(viewModel);
-                db.Entry(album).State = EntityState.Modified;
-                db.SaveChanges();
+                repositorioAlbums.Alterar(album);
                 return RedirectToAction("Index");
             }
             return View(viewModel);
@@ -101,7 +101,7 @@ namespace TreinaWeb.Musicas.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Album album = db.Albuns.Find(id);
+            Album album = repositorioAlbums.SelecionarPorId(id.Value);
             if (album == null)
             {
                 return HttpNotFound();
@@ -114,19 +114,8 @@ namespace TreinaWeb.Musicas.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Album album = db.Albuns.Find(id);
-            db.Albuns.Remove(album);
-            db.SaveChanges();
+            repositorioAlbums.ExcluirPorId(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

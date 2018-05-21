@@ -50,7 +50,9 @@ namespace TreinaWeb.Musicas.AcessoDados.Entity.TypeConfiguration
 
         protected override void ConfigForeignKey()
         {
-
+            //HasMany(album => album.Musicas)
+            //    .WithRequired(musica => musica.Album)
+            //    .HasForeignKey(musica => musica.IdAlbum);
         }
 
     }

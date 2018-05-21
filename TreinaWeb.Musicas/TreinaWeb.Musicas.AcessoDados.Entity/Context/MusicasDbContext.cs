@@ -12,6 +12,7 @@ namespace TreinaWeb.Musicas.AcessoDados.Entity.Context
     public class MusicasDbContext : DbContext
     {
         public DbSet<Album> Albuns { get; set; }
+        public DbSet<Musica> Musicas { get; set; }
 
         public MusicasDbContext()
         {
@@ -22,6 +23,7 @@ namespace TreinaWeb.Musicas.AcessoDados.Entity.Context
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new AlbumTypeConfiguration());
+            modelBuilder.Configurations.Add(new MusicaTypeConfiguration());
         }
     }
 }

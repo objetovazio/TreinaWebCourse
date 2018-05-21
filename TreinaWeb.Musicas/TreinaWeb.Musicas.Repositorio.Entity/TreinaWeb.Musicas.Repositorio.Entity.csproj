@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3B8CBA77-67B1-460A-9192-E369D4A04A52}</ProjectGuid>
+    <ProjectGuid>{A26E730D-12C4-4928-90D7-88167579A56F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TreinaWeb.Musicas.AcessoDados.Entity</RootNamespace>
-    <AssemblyName>TreinaWeb.Musicas.AcessoDados.Entity</AssemblyName>
+    <RootNamespace>TreinaWeb.Musicas.Repositorio.Entity</RootNamespace>
+    <AssemblyName>TreinaWeb.Musicas.Repositorio.Entity</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -47,48 +47,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\MusicasDbContext.cs" />
-    <Compile Include="Migrations\201805172348229_MigracaoInicial.cs" />
-    <Compile Include="Migrations\201805172348229_MigracaoInicial.Designer.cs">
-      <DependentUpon>201805172348229_MigracaoInicial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805180007475_AdicaoEmailAlbum.cs" />
-    <Compile Include="Migrations\201805180007475_AdicaoEmailAlbum.Designer.cs">
-      <DependentUpon>201805180007475_AdicaoEmailAlbum.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805210218021_MigrationAdicaoMusica.cs" />
-    <Compile Include="Migrations\201805210218021_MigrationAdicaoMusica.Designer.cs">
-      <DependentUpon>201805210218021_MigrationAdicaoMusica.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="AlbumsRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TypeConfiguration\AlbumTypeConfiguration.cs" />
-    <Compile Include="TypeConfiguration\MusicaTypeConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TreinaWeb.Musicas.Comum\TreinaWeb.Musicas.Comum.Entity.csproj">
-      <Project>{f4694f79-6a9e-4861-9e59-cedd8ad6e772}</Project>
-      <Name>TreinaWeb.Musicas.Comum.Entity</Name>
+    <ProjectReference Include="..\TreinaWeb.Musicas.AcessoDados.Entity\TreinaWeb.Musicas.AcessoDados.Entity.csproj">
+      <Project>{3b8cba77-67b1-460a-9192-e369d4a04a52}</Project>
+      <Name>TreinaWeb.Musicas.AcessoDados.Entity</Name>
     </ProjectReference>
     <ProjectReference Include="..\TreinaWeb.Musicas.Dominio\TreinaWeb.Musicas.Dominio.csproj">
       <Project>{5832435c-3a12-4a7d-8887-44c93f6f1533}</Project>
       <Name>TreinaWeb.Musicas.Dominio</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TreinaWeb.Musicas.Repositorio.Comum.Entity\TreinaWeb.Musicas.Repositorio.Comum.Entity.csproj">
+      <Project>{f68d6224-9964-4c90-8ebc-cac05a81e1d0}</Project>
+      <Name>TreinaWeb.Musicas.Repositorio.Comum.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TreinaWeb.Musicas.Repositorio\TreinaWeb.Musicas.Repositorio.Comum.csproj">
+      <Project>{7d5a9cad-49af-4a7f-a652-7cb0d8e553db}</Project>
+      <Name>TreinaWeb.Musicas.Repositorio.Comum</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805172348229_MigracaoInicial.resx">
-      <DependentUpon>201805172348229_MigracaoInicial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805180007475_AdicaoEmailAlbum.resx">
-      <DependentUpon>201805180007475_AdicaoEmailAlbum.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805210218021_MigrationAdicaoMusica.resx">
-      <DependentUpon>201805210218021_MigrationAdicaoMusica.cs</DependentUpon>
-    </EmbeddedResource>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
