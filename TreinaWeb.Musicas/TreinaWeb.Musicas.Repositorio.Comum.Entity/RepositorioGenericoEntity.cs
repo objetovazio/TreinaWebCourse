@@ -31,7 +31,7 @@ namespace TreinaWeb.Musicas.Repositorio.Comum.Entity
         public void Alterar(TEntidade entidade)
         {
             context.Set<TEntidade>().Attach(entidade);
-            context.Entry(entidade).State = EntityState.Added;
+            context.Entry(entidade).State = EntityState.Modified;
             context.SaveChanges();
         }
 

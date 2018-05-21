@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using TreinaWeb.Musicas.Dominio;
 using TreinaWeb.Musicas.Web.Models.Album;
+using TreinaWeb.Musicas.Web.Models.Musica;
 
 namespace TreinaWeb.Musicas.Web.AutoMapper
 {
@@ -13,6 +14,7 @@ namespace TreinaWeb.Musicas.Web.AutoMapper
         public ViewModelParaDominioProfile()
         {
             CreateMap<AlbumViewModel, Album>();
+            CreateMap<MusicaViewModel, Musica>();
         }
     }
 }
