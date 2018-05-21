@@ -20,6 +20,7 @@ namespace TreinaWeb.Musicas.Web.Models.Musica
 
         public string NomeAlbum { get; set; }
 
+        [Required]
         public Dominio.Album Album { get; set; }
     }
 }

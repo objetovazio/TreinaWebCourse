@@ -15,6 +15,7 @@ using TreinaWeb.Musicas.Web.Models.Album;
 
 namespace TreinaWeb.Musicas.Web.Controllers
 {
+    [Authorize]
     public class AlbunsController : Controller
     {
         private IRepositorioGenerico<Album, int> repositorioAlbums = new AlbumsRepositorio(new MusicasDbContext());
@@ -106,7 +107,7 @@ namespace TreinaWeb.Musicas.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(album);
+            return View(Mapper.Map<Album, AlbumViewModel>(album));
         }
 
         // POST: Albuns/Delete/5

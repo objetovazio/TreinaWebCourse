@@ -16,6 +16,7 @@ using TreinaWeb.Musicas.Web.Models.Musica;
 
 namespace TreinaWeb.Musicas.Web.Controllers
 {
+    [Authorize]
     public class MusicasController : Controller
     {
         private IRepositorioGenerico<Musica, long> repositorioMusica
